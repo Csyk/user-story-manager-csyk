@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>User Story Manager</title>
+</head>
+
+<body>
+
+<h1>User Story Manager</h1>
+
+<table border="1">
+    <tr>
+        <td>ID</td>
+        <td>Story Title</td>
+        <td>User Story</td>
+        <td>Acceptance Criteria</td>
+        <td>Business Value</td>
+        <td>Estimation</td>
+    </tr>
+    {% for entry in entries %}
+        <tr>
+            <td>{{ entry[0] }}</td>
+            <td>{{ entry[1] }}</td>
+            <td>{{ entry[2] }}</td>
+            <td>{{ entry[3] }}</td>
+            <td>{{ entry[4] }}</td>
+            <td>{{ entry[5] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+</body>
+
+</html>
