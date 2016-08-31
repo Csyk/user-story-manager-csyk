@@ -9,15 +9,16 @@
 <body>
     <h1>User story manager - Add new story</h1>
     <p>Story Title</p>
+    <form action = "{{ url_for('new_story') }}" method="POST">
     <p><input name="story_title", style="width: 400px"></p>
     <p>User Story</p>
     <p><input name="user_story", style="width: 400px; height: 100px"></p>
-    <p>Acceptence Criteria</p>
-    <p><input name="acceptence_criteria", style="width: 400px; height: 100px"></p>
+    <p>Acceptance Criteria</p>
+    <p><input name="acceptance_criteria", style="width: 400px; height: 100px"></p>
     <p>Business Value</p>
     <p><input type="number" name=business_value min="100" max="1500" step="100"></p>
     <p>Estimation</p>
-    <p><input type="number" name=estimation min="100" max="1500" step="100"></p>
+    <p><input type="number" name=estimation min="0.5" max="4" step="0.5"></p>
     <p>Status</p>
         <select>
             <option>Planning</option>
@@ -26,6 +27,8 @@
             <option>Review</option>
             <option>Done</option>
         </select>
+    <p><button type="submit">Submit</button></p>
+        </form>
 
 
 </body>

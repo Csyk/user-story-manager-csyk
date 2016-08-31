@@ -5,6 +5,6 @@ create table entries (
     "user_story" text not null,
     "acceptance_criteria" text not null,
     "business_value" integer not null,
-    "estimation" decimal(3, 2) not null,
-    "status" text not null
+    "estimation" FLOAT not null,
+    "status" text
 );

@@ -34,27 +34,30 @@ def add_story():
     return render_template('form.html', title='Add story')
 
 
-@app.route('/story', methods=['POST'])
+@app.route('/story/submit', methods=['POST'])
 def new_story():
     """Add story"""
     db = get_db()
-    db.execute("""INSERT INTO app (Story title, User story, Acceptance Criteria, Business value, Estimation)
-               VALUES (?, ?, ?, ?, ?)""",
-               [request.form['Story title'], request.form['User story'], request.form['Acceptance Criteria'],
-                request.form['Business value'], request.form['Estimation']])
+    db.execute("""INSERT INTO entries (story_title, user_story, acceptance_criteria, business_value, estimation)
+               VALUES (?, ?, ?, ?, ?)""", [request.form["story_title"], request.form["user_story"],
+                                           request.form["acceptance_criteria"], request.form["business_value"],
+                                           request.form["estimation"]])
+    print("ddd")
     db.commit()
-    return redirect(url_for('list_stories'))
+    return redirect(url_for('list_stories')) #redirect to another route
 
 
-@app.route('/list', methods=['GET'])
+@app.route('/')
+@app.route('/list', methods=['GET']) #default GET
 def list_stories():
     """Show stories"""
     db = get_db()
-    query = """SELECT * FROM app"""
+    query = """SELECT * FROM entries"""
     cur = db.execute(query)
     stories = cur.fetchall()
     return render_template('list.html', entries=stories)
 
-
+# with app.app_context():
+#     setup_db()
 if __name__ == '__main__':
     app.run(debug=True)
