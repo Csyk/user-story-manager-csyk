@@ -3,11 +3,21 @@
 <html>
 
 <head>
-    <title>User story manager</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>User Story Manager</title>
 </head>
 
 <body>
-    <h1>User story manager - Add new story</h1>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fixed">
+    <div class="navbar-header">
+      <a class="navbar-brand"> User Story Manage - Add new story</a>
+    </div>
+  </div>
+</nav>
+<div style="padding: 70px 20px;">
     <p>Story Title</p>
     <form action = "{{ url_for('new_story') }}" method="POST">
     <p><input name="story_title", style="width: 400px"></p>
@@ -29,6 +39,6 @@
         </select>
     <p><button type="submit">Submit</button></p>
         </form>
-
+</div>
 
 </body>

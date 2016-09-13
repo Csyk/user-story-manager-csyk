@@ -20,14 +20,6 @@ def close_db(exception):
         db.close()
 
 
-def setup_db():
-    db = get_db()
-    with app.open_resource('schema.sql', mode='r') as f:
-        db.cursor().executescript(f.read())
-    db.commit()
-    print('Initialized the database.')
-
-
 @app.route('/story', methods=['GET'])
 def add_story():
     """Add story"""
@@ -42,13 +34,12 @@ def new_story():
                VALUES (?, ?, ?, ?, ?)""", [request.form["story_title"], request.form["user_story"],
                                            request.form["acceptance_criteria"], request.form["business_value"],
                                            request.form["estimation"]])
-    print("ddd")
     db.commit()
-    return redirect(url_for('list_stories')) #redirect to another route
+    return redirect(url_for('list_stories'))  # redirect to another route
 
 
 @app.route('/')
-@app.route('/list', methods=['GET']) #default GET
+@app.route('/list', methods=['GET'])  # default GET
 def list_stories():
     """Show stories"""
     db = get_db()
@@ -57,7 +48,6 @@ def list_stories():
     stories = cur.fetchall()
     return render_template('list.html', entries=stories)
 
-# with app.app_context():
-#     setup_db()
+
 if __name__ == '__main__':
     app.run(debug=True)
